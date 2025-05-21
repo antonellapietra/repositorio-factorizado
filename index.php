@@ -33,10 +33,13 @@ echo "<body>";
 echo "<h2>Listado de Estudiantes</h2>";
 echo "<a href='insert.php'>Agregar Nuevo</a><br><br>";
 
+// Si hay registros en la base de datos, se arma la tabla con los datos
 if ($result->num_rows > 0) {
     echo "<table border='1' cellpadding='10'>";
     echo "<tr><th>Nombre</th><th>Email</th><th>Edad</th><th>Acciones</th></tr>";
+    //recorre cada fila de resultados con fetch_assoc()
     while ($row = $result->fetch_assoc()) {
+        //imprime una fila de la tabla por cada estudiante
         echo "<tr>
                 <td>{$row['fullname']}</td>
                 <td>{$row['email']}</td>
@@ -49,6 +52,7 @@ if ($result->num_rows > 0) {
     }
     echo "</table>";
 } else {
+    //si no hay estudiantes registrados, se muestra un mensaje
     echo "No hay estudiantes cargados.";
 }
 echo "</body>";

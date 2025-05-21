@@ -11,11 +11,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $name = $_POST['fullname'];
     $email = $_POST['email'];
     $age = $_POST['age'];
-
+    //Se crea una consulta SQL para insertar un nuevo estudiante.
     $sql = "INSERT INTO students (fullname, email, age)
             VALUES ('$name', '$email', $age)";
 
-    if ($connection->query($sql) === TRUE) {
+    if ($connection->query($sql) === TRUE) { // Ejecuta la consulta y verifica si se realizó correctamente
         /**
          * la función header redirige a la página principal index.php
          * de lo contrario recargaría la misma página.
@@ -27,7 +27,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 ?>
-
+<!--Formulario HTML para guardar los datos del nuevo estudiante -->
 <h2>Agregar Estudiante</h2>
 <form action="insert.php" method="post">
     Nombre completo: <input type="text" name="fullname" required><br>

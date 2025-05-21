@@ -1,15 +1,18 @@
 <?php
+// Incluye la conexión a la base de datos
 include 'config.php';
-
+//obtiene ID del estudiante
 $id = $_GET['id'];
+//consulta los datos del estudiante con dicho ID
 $result = $connection->query("SELECT * FROM students WHERE id = $id");
-$row = $result->fetch_assoc();
+$row = $result->fetch_assoc(); //trae los datos como array asociativo
 
+//si se envio el formulario POST, procesa la actualizacion
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $name = $_POST['fullname'];
     $email = $_POST['email'];
     $age = $_POST['age'];
-
+    //actualiza los datos del estudiante
     $sql = "UPDATE students SET fullname='$name', email='$email', age=$age WHERE id=$id";
 
     if ($connection->query($sql) === TRUE) {
